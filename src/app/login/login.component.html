@@ -1,0 +1,22 @@
+<div class="animated fadeInDown">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Entrar al Sistema</h2>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form novalidate [formGroup]='formLogin' class="example-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Correo" formControlName="usuario" required>
+            <mat-error *ngIf='formLogin.controls.usuario.hasError("required")'>Este campo es obligatorio</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" placeholder="Clave" formControlName="clave" required>
+            <mat-error *ngIf="formLogin.controls.clave.hasError('required')">Este campo es obligatorio</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" *ngIf='formLogin.valid'> Entrar <mat-icon>send</mat-icon></button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

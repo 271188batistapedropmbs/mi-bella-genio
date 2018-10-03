@@ -1,0 +1,167 @@
+mat-spinner{
+margin:auto;
+}
+.Aries {
+    background-image: url('../../assets/img/signos-zodiacales/Aries.png');
+    background-size: cover;
+    padding: 0px;
+  }
+
+  .Tauro {
+    background-image: url('../../assets/img/signos-zodiacales/Tauro.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Géminis {
+    background-image: url('../../assets/img/signos-zodiacales/Geminis.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Cáncer {
+    background-image: url('../../assets/img/signos-zodiacales/Cancer.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Leo {
+    background-image: url('../../assets/img/signos-zodiacales/Leo.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Virgo {
+    background-image: url('../../assets/img/signos-zodiacales/Virgo.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Libra {
+    background-image: url('../../assets/img/signos-zodiacales/Libra.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Escorpión {
+    background-image: url('../../assets/img/signos-zodiacales/Escorpion.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Sagitario {
+    background-image: url('../../assets/img/signos-zodiacales/Sagitario.png');
+    background-size: cover;
+    padding: 0px;
+  }
+
+  .Capricornio {
+    background-image: url('../../assets/img/signos-zodiacales/Capricornio.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Acuario {
+    background-image: url('../../assets/img/signos-zodiacales/Acuario.png');
+    background-size: cover;
+    padding: 0px;
+  }
+  .Piscis {
+    background-image: url('../../assets/img/signos-zodiacales/Piscis.png');
+    background-size: cover;
+    padding: 0px;
+  }
+
+
+  mat-card-title.mat-card-title {
+    margin-top: 0px;
+    color: red;
+    font-size: larger;
+}
+
+.example-header-image.mat-card-avatar {
+    box-shadow: 0px 0px 5px rgba(123,123,123,0.8);
+}
+
+mat-card.mat-card {
+    width: 75%;
+    max-width: 75%;
+    height: 335px;
+}
+span{
+  color:blue;
+}
+
+mat-card.titulo.mat-card {
+  height: auto;
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.titulo h1 {
+    color: #3f51b5;
+    font-size: -webkit-xxx-large;
+    font-family: -webkit-body;
+}
+
+.titulo p {
+    color: darkblue;
+    font-family: serif;
+    font-size: smaller;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  -webkit-animation-name: zoomIn;
+  animation-name: zoomIn;
+}

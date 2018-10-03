@@ -1,0 +1,54 @@
+<mat-card class="animated fadeInDown">
+  <mat-card-header>
+    <mat-card-title>
+    <h2>Formulario de Registro</h2>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form novalidate [formGroup]='formRegistrar'  (ngSubmit)='onSubmit()'>
+      <mat-form-field>
+        <input matInput placeholder="Digite su nombre" formControlName='nombre' required>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("required")'> Este campo es obligatorio </mat-error>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("minlength")'>Error el minimo de letra es 3</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("maxlength")'>Error el maximo de letra es 15</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("pattern")'>Error solo se permiten letras</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("isVacio")'>Error campo no puede ser vacio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Digite su apellido" formControlName="apellido" required>
+        <mat-error *ngIf='formRegistrar.controls.apellido.hasError("required")'> Este campo es obligatorio </mat-error>
+        <mat-error *ngIf='formRegistrar.controls.apellido.hasError("minlength")'> Error el minimo de letra es 3</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.apellido.hasError("maxlength")'>Error el maximo de letra es 15</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.apellido.hasError("pattern")'>Error solo se permiten letras</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("isVacio")'>Error campo no puede ser vacio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+          <input matInput [matDatepicker]="picker" [min]='minDate' [max]='maxDate' autocomplete="off"  (click)='picker.open()' placeholder="Fecha de nacimiento" formControlName="fecha" required>
+          <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Digite su Correo" formControlName='correo' required>
+        <mat-error *ngIf='formRegistrar.controls.correo.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.correo.hasError("email")'>Correo no valido</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Digite su telefono" formControlName="telefono" required>
+        <mat-error *ngIf='formRegistrar.controls.telefono.hasError("required")'>Este campo es requerido</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.telefono.hasError("minlength") || formRegistrar.controls.telefono.hasError("maxlength") '>Error campo debe ser igual a 11 digitos</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.telefono.hasError("pattern")'>Error solo se aceptan numeros</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type='password' matInput placeholder="Digite su Clave" formControlName='clave' required>
+        <mat-error *ngIf='formRegistrar.controls.clave.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.clave.hasError("minlength")'>Error el minimo de caracteres debe ser de 8</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.nombre.hasError("isVacio")'>Error campo no puede ser vacio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input type='password' matInput placeholder='Confirme Clave' formControlName='confirmarClave' required>
+        <mat-error *ngIf='formRegistrar.controls.confirmarClave.hasError("required")'>Este campo es obligatorio </mat-error>
+        <mat-error *ngIf='formRegistrar.controls.confirmarClave.hasError("isError")'>Error al confirmar clave</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" *ngIf='formRegistrar.valid'>Enviar <mat-icon>send</mat-icon></button>
+    </form>
+  </mat-card-content>
+</mat-card>

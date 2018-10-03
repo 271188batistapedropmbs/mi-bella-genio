@@ -1,0 +1,50 @@
+
+<mat-spinner *ngIf="loading"></mat-spinner>
+<div *ngIf="!loading">
+  <mat-card class="titulo animated fadeInDown">
+    <mat-card-header>
+      <mat-card-title>
+        <p>Fecha {{fecha}}</p>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h1>Horoscopos</h1>
+    </mat-card-content>
+  </mat-card>
+
+
+<mat-grid-list [cols]='cols' rowHeight="200px" gutterSize="2px">
+
+  <mat-grid-tile colspan='1' rowspan='2' *ngFor='let horoscopo of horoscopos' class="animated zoomIn">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar [ngClass]='horoscopo.nombre'></div>
+        <mat-card-title>
+          {{horoscopo.nombre}}
+        </mat-card-title>
+        <mat-card-subtitle>
+          {{horoscopo.fechaSigno}}
+        </mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          <span>Amor :</span> {{horoscopo.amor}}
+        </p>
+        <p>
+            <span>Dinero :</span> {{horoscopo.dinero}}
+        </p>
+        <p>
+            <span>Salud :</span> {{horoscopo.salud}}
+        </p>
+        <p>
+            <span>Numero :</span> {{horoscopo.numero}}
+        </p>
+        <p>
+            <span>Color :</span> {{horoscopo.color}}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+
+</div>
