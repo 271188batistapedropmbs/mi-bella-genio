@@ -35,7 +35,14 @@ export class LoginComponent implements OnInit {
     this.email = this.formLogin.get('email').value;
     this.password = this.formLogin.get('clave').value;
     console.log(this.email, this.password);
-/*this._serviceLogin.login(this.login)*/
+    this._serviceLogin.login(this.email, this.password).subscribe((resp) => {
+      console.log(resp);
+      localStorage.setItem('ApiToken', resp.user.token);
+      localStorage.setItem('ApiUser', JSON.stringify(resp.user.usuario));
+    },
+    (error) => {
+      console.log(error);
+    });
 
   }
 

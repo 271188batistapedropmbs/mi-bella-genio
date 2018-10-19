@@ -1,12 +1,12 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
-
+/*componentes por ahora lo dejaremos */
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { QuienSoyComponent } from './quien-soy/quien-soy.component';
@@ -17,17 +17,10 @@ import { HoroscopoComponent } from './horoscopo/horoscopo.component';
 import { Error404Component } from './error404/error404.component';
 import { AppRoutingModule } from './/app-routing.module';
 
-
-import { LayoutModule } from '@angular/cdk/layout';
-import {MatDividerModule} from '@angular/material/divider';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import {MatInputModule} from '@angular/material/input';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material';
+/*interceptores*/
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+/*modulo de material angular*/
+import { MaterialModule } from './material.module';
 
 
 
@@ -47,26 +40,15 @@ import {MatNativeDateModule} from '@angular/material';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatDividerModule,
-    MatInputModule,
-    MatGridListModule,
-    MatCardModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
