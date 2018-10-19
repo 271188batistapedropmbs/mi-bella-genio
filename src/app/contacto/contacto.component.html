@@ -16,7 +16,7 @@
                         <mat-error *ngIf='formContacto.controls.nombre.hasError("minlength")'>Debe de tener por lo menos 3 letras</mat-error>
                         <mat-error *ngIf="formContacto.controls.nombre.hasError('pattern')">Solo se Pemiten letras</mat-error>
                         <mat-error *ngIf='formContacto.controls.nombre.hasError("isVacio")'>Error campo no puede ser vacio</mat-error>
-                        <mat-error *ngIf='errorServidorNombre'>{{errorNombre}}</mat-error>
+                        
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <input matInput placeholder="Digite su Correo" name='correo' formControlName="correo" required>

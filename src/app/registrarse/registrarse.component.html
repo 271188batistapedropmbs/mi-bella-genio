@@ -24,7 +24,7 @@
       </mat-form-field>
       <mat-form-field>
           <input matInput [matDatepicker]="picker" [min]='minDate' [max]='maxDate' autocomplete="off"  (click)='picker.open()' placeholder="Fecha de nacimiento" formControlName="fecha" required>
-          <mat-datepicker #picker></mat-datepicker>
+          <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Digite su Correo" formControlName='correo' required>

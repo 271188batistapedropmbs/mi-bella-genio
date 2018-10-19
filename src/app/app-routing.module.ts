@@ -7,12 +7,13 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { LoginComponent } from './login/login.component';
 import { HoroscopoComponent } from './horoscopo/horoscopo.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'inicio', pathMatch:'full' },
-  { path: 'inicio', component: InicioComponent } ,
+  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] } ,
   { path: 'quien soy', component: QuienSoyComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'horoscopos', component: HoroscopoComponent },
@@ -23,7 +24,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes,{useHash:true}),
+    RouterModule.forRoot( routes, { useHash: true }),
   ],
 })
 export class AppRoutingModule { }

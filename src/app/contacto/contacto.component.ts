@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { espacioVacio } from '../validador/helper';
 import { ContactoService } from '../services/contacto.service';
 import { Contacto } from '../models/contacto';
+import swal from 'sweetalert';
+
 
 
 @Component({
@@ -18,16 +21,8 @@ export class ContactoComponent implements OnInit {
   formContacto: FormGroup;
   contacto: Contacto;
 
-  errorServidorNombre:  boolean;
-  errorServidorCorreo:  boolean;
-  errorServidorAsunto:  boolean;
-  errorServidorMensaje: boolean;
-  errorNombre: string;
-  errorCorreo: string;
-  errorAsunto: string;
-  errorMensaje: string;
 
-  constructor(private _fb: FormBuilder, private  _contactoServ: ContactoService) { }
+  constructor(private _fb: FormBuilder, private  _contactoServ: ContactoService, public router: Router) { }
 
   ngOnInit() {
     this.initForm();
@@ -46,9 +41,8 @@ export class ContactoComponent implements OnInit {
   onSubmit() {
     this.contacto = this.formContacto.value;
     this._contactoServ.crearContacto(this.contacto).subscribe((data) => {
-      console.log(data);
-      alert(data.mensaje);
-      this.formContacto.reset();
+      swal('gracias por contactarnos', data.mensaje, 'success');
+      this.router.navigate(['/inicio']);
     }, (error) => {
       console.log(error);
     });

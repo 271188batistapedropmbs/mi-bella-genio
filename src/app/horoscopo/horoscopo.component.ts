@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import {HoroscopoService} from '../services/horoscopo.service';
 import { BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-horoscopo',
@@ -15,6 +16,7 @@ export class HoroscopoComponent implements OnInit, OnDestroy {
   cols = '4';
   fecha: any;
   loading = false;
+  suscripcion: Subscription;
   constructor(private _servhorosc: HoroscopoService, private breakpointObserver: BreakpointObserver ) { }
 
   ngOnInit() {
@@ -50,8 +52,8 @@ export class HoroscopoComponent implements OnInit, OnDestroy {
   }
 
   getHoroscopo(): void {
-    this.loading = true;
-      this._servhorosc.getHoroscopo().subscribe(( data ) => {
+      this.loading = true;
+      this.suscripcion =  this._servhorosc.getHoroscopo().subscribe(( data ) => {
       this.horoscopos = Object.values(data['horoscopo']);
       this.fecha = data['titulo'];
       this.loading = false;
@@ -59,6 +61,6 @@ export class HoroscopoComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.getHoroscopo();
+    this.suscripcion.unsubscribe();
   }
 }
