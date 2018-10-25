@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
+
 
 
 @Component({
@@ -14,7 +16,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private _fb: FormBuilder, private _serviceLogin: LoginService ) { }
+  constructor(private _fb: FormBuilder, private _serviceLogin: LoginService, private router: Router ) { }
 
   ngOnInit() {
     this.initForm();
@@ -34,11 +36,18 @@ export class LoginComponent implements OnInit {
     }
     this.email = this.formLogin.get('email').value;
     this.password = this.formLogin.get('clave').value;
-    console.log(this.email, this.password);
+
     this._serviceLogin.login(this.email, this.password).subscribe((resp) => {
-      console.log(resp);
-      localStorage.setItem('ApiToken', resp.user.token);
-      localStorage.setItem('ApiUser', JSON.stringify(resp.user.usuario));
+      localStorage.setItem('ApiToken', resp[0].token);
+      localStorage.setItem('ApiUser', JSON.stringify(resp[0].user));
+
+      if (resp[0].user.tipo === 'isAdmin') {
+        this.router.navigate(['/admin']);
+      } else if ( resp[0].user.tipo === 'isUser') {
+        this.router.navigate(['/user']);
+      } else {
+        this.router.navigate(['/login']);
+      }
     },
     (error) => {
       console.log(error);

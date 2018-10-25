@@ -17,10 +17,15 @@ import { HoroscopoComponent } from './horoscopo/horoscopo.component';
 import { Error404Component } from './error404/error404.component';
 import { AppRoutingModule } from './/app-routing.module';
 
-/*interceptores*/
+/*interceptores
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+*/
 /*modulo de material angular*/
 import { MaterialModule } from './material.module';
+
+/*modulos admin y user*/
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
 
 
 
@@ -35,7 +40,7 @@ import { MaterialModule } from './material.module';
     LoginComponent,
     RegistrarseComponent,
     HoroscopoComponent,
-    Error404Component
+    Error404Component,
   ],
   imports: [
     BrowserModule,
@@ -44,10 +49,12 @@ import { MaterialModule } from './material.module';
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    UserModule,
+    AdminModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    /*{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },*/
   ],
   bootstrap: [AppComponent]
 })

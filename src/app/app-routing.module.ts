@@ -7,18 +7,16 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { LoginComponent } from './login/login.component';
 import { HoroscopoComponent } from './horoscopo/horoscopo.component';
-import { AuthGuard } from './guards/auth.guard';
-
 
 
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard] } ,
+  { path: 'inicio', component: InicioComponent } ,
   { path: 'quien soy', component: QuienSoyComponent },
   { path: 'contacto', component: ContactoComponent },
   { path: 'horoscopos', component: HoroscopoComponent },
   { path: 'registrarse', component: RegistrarseComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({

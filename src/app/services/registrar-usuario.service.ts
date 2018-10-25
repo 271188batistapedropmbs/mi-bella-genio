@@ -20,7 +20,7 @@ export class RegistrarUsuarioService {
   registrar(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(`${this.API_URL}/registrarse`, usuario, httpOptions)
         .catch(error => {
-          swal('error al registrarse', JSON.stringify(error.error) , 'error');
+          swal('error al registrarse', JSON.stringify(error) , 'error');
           return Observable.throw(error);
         });
 
