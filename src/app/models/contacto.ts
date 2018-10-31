@@ -3,4 +3,5 @@ export class Contacto {
     correo: string;
     asunto: string;
     mensaje: string;
+    id?: number;
 }

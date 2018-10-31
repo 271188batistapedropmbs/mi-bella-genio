@@ -8,17 +8,15 @@ import { Observable } from 'rxjs';
 export class AdminGuard implements CanActivate {
 
   constructor( public router: Router ) { }
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if ( localStorage.getItem('ApiUSer') &&  localStorage.getItem('ApiToken') ) {
+  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      const usuarios = JSON.parse(localStorage.get('ApiUser'));
-      if (usuarios.tipo === 'isAdmin') {
+    if ( localStorage.getItem('ApiUser') && localStorage.getItem('ApiToken') ) {
+
+      const usuario = JSON.parse(localStorage.getItem('ApiUser'));
+      if (usuario.tipo === 'isAdmin') {
         return true;
-      } else {
-        this.router.navigate(['/login']);
       }
     }
+    this.router.navigate(['/login']);
   }
 }

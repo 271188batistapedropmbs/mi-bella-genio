@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { Error404Component } from '../error404/error404.component';
+import { MenuUserComponent } from './menu-user/menu-user.component';
+import { UserGuard } from '../guards/user.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/user', pathMatch: 'full'},
-  {path: '**', component: Error404Component}
+  {
+    path: 'user',
+    component: MenuUserComponent,
+    canActivate: [UserGuard],
+}
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forChild(routes),
   ],
+  exports: [RouterModule],
   declarations: []
 })
 export class UserRoutingModule { }

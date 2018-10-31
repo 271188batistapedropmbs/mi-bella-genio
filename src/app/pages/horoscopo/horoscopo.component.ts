@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {HoroscopoService} from '../services/horoscopo.service';
+import {HoroscopoService} from '../../services/horoscopo.service';
 import { BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import { Subscription } from 'rxjs';
 

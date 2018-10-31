@@ -1,0 +1,68 @@
+<mat-card>
+
+  <mat-form-field> 
+    <input  matInput (keyup)="filtrar($event.target.value)"  placeholder = "Buscar" > 
+  </mat-form-field >
+</mat-card>
+
+<button mat-raised-button color='primary'>Agregar <mat-icon>add</mat-icon></button>
+
+
+<ul *ngFor='let servicio of services'>
+  <li>{{servicio.id}}</li>
+</ul>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="#">
+    <th mat-header-cell *matHeaderCellDef> # </th>
+    <td mat-cell *matCellDef="let element; let i = index;"> {{i+1}} </td>
+  </ng-container>
+  
+  <!-- Position Column -->
+  <ng-container matColumnDef="nombre">
+    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+    <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+  </ng-container>
+
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle color='primary' [checked]="element.estado == 0 ? false: true" (click)='cambiarEstado(element)'></mat-slide-toggle>
+      </td>
+    </ng-container>
+
+     <!-- Symbol Column -->
+  <ng-container matColumnDef="creado">
+    <th mat-header-cell *matHeaderCellDef>Creado </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.created_at}}
+    </td>
+  </ng-container>
+
+   <!-- Symbol Column -->
+   <ng-container matColumnDef="actualizado">
+    <th mat-header-cell *matHeaderCellDef> Actualizado </th>
+    <td mat-cell *matCellDef="let element">
+     {{element.updated_at}}
+    </td>
+  </ng-container>
+
+    <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-mini-fab color='primary' (click)='editar(element.id)'><mat-icon>edit</mat-icon></button>  
+          <button mat-mini-fab color='warn' (click)='eliminar(element.id)'><mat-icon>delete_forever</mat-icon></button> 
+        </td>
+       
+      </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

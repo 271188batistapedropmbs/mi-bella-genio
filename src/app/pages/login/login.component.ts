@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../../services/login.service';
 
 
 
@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.email = this.formLogin.get('email').value;
     this.password = this.formLogin.get('clave').value;
 
-    this._serviceLogin.login(this.email, this.password).subscribe((resp) => {
+    this._serviceLogin.login(this.email, this.password).subscribe( resp => {
       localStorage.setItem('ApiToken', resp[0].token);
       localStorage.setItem('ApiUser', JSON.stringify(resp[0].user));
 
@@ -48,9 +48,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.router.navigate(['/login']);
       }
-    },
-    (error) => {
-      console.log(error);
     });
 
   }

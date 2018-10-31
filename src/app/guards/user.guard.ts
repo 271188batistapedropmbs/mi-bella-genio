@@ -9,17 +9,15 @@ export class UserGuard implements CanActivate {
 
   constructor(public router: Router) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if ( localStorage.getItem('ApiUSer') &&  localStorage.getItem('ApiToken') ) {
+  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    if ( localStorage.getItem('ApiUser') && localStorage.getItem('ApiToken') ) {
 
-        const usuarios = JSON.parse(localStorage.get('ApiUser'));
-        if (usuarios.tipo === 'isUser') {
-          return true;
-        } else {
-          this.router.navigate(['/login']);
-        }
+      const usuario = JSON.parse(localStorage.getItem('ApiUser'));
+      if (usuario.tipo === 'isUser') {
+        return true;
       }
+    }
+    this.router.navigate(['/login']);
   }
+
 }

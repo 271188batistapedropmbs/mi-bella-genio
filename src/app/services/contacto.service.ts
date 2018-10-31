@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Contacto } from '../models/contacto';
 import { Observable } from 'rxjs';
 
@@ -15,9 +15,6 @@ const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/jso
 export class ContactoService {
 
 API_URL = 'http://127.0.0.1:8000/api';
-
-
-contacto: Array<Contacto> = [];
 
   constructor(private _http: HttpClient ) { }
 

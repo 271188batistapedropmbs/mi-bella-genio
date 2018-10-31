@@ -2,64 +2,64 @@ mat-spinner{
 margin:auto;
 }
 .Aries {
-    background-image: url('../../assets/img/signos-zodiacales/Aries.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Aries.png');
     background-size: cover;
     padding: 0px;
   }
 
   .Tauro {
-    background-image: url('../../assets/img/signos-zodiacales/Tauro.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Tauro.png');
     background-size: cover;
     padding: 0px;
   }
   .Géminis {
-    background-image: url('../../assets/img/signos-zodiacales/Geminis.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Geminis.png');
     background-size: cover;
     padding: 0px;
   }
   .Cáncer {
-    background-image: url('../../assets/img/signos-zodiacales/Cancer.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Cancer.png');
     background-size: cover;
     padding: 0px;
   }
   .Leo {
-    background-image: url('../../assets/img/signos-zodiacales/Leo.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Leo.png');
     background-size: cover;
     padding: 0px;
   }
   .Virgo {
-    background-image: url('../../assets/img/signos-zodiacales/Virgo.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Virgo.png');
     background-size: cover;
     padding: 0px;
   }
   .Libra {
-    background-image: url('../../assets/img/signos-zodiacales/Libra.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Libra.png');
     background-size: cover;
     padding: 0px;
   }
   .Escorpión {
-    background-image: url('../../assets/img/signos-zodiacales/Escorpion.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Escorpion.png');
     background-size: cover;
     padding: 0px;
   }
   .Sagitario {
-    background-image: url('../../assets/img/signos-zodiacales/Sagitario.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Sagitario.png');
     background-size: cover;
     padding: 0px;
   }
 
   .Capricornio {
-    background-image: url('../../assets/img/signos-zodiacales/Capricornio.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Capricornio.png');
     background-size: cover;
     padding: 0px;
   }
   .Acuario {
-    background-image: url('../../assets/img/signos-zodiacales/Acuario.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Acuario.png');
     background-size: cover;
     padding: 0px;
   }
   .Piscis {
-    background-image: url('../../assets/img/signos-zodiacales/Piscis.png');
+    background-image: url('../../../assets/img/signos-zodiacales/Piscis.png');
     background-size: cover;
     padding: 0px;
   }
@@ -165,3 +165,4 @@ mat-card.titulo.mat-card {
   -webkit-animation-name: zoomIn;
   animation-name: zoomIn;
 }
+

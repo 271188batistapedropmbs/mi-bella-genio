@@ -1,0 +1,16 @@
+mat-card.mat-card {
+    padding: 3px;
+    margin: auto;
+    width: 98%;
+    margin-bottom: 12px;
+    height: 40px;
+}
+
+button.mat-raised-button.mat-primary {
+    margin-left: 1%;
+    
+}
+
+button.mat-mini-fab {
+    margin: 3px;
+}

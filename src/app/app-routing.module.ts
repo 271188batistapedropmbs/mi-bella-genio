@@ -1,28 +1,19 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { InicioComponent } from './inicio/inicio.component';
-import { QuienSoyComponent } from './quien-soy/quien-soy.component';
-import { ContactoComponent } from './contacto/contacto.component';
-import { RegistrarseComponent } from './registrarse/registrarse.component';
-import { LoginComponent } from './login/login.component';
-import { HoroscopoComponent } from './horoscopo/horoscopo.component';
+
+import { Error404Component } from './error404/error404.component';
 
 
-const routes: Routes = [
-  { path: '', redirectTo: 'inicio', pathMatch: 'full' },
-  { path: 'inicio', component: InicioComponent } ,
-  { path: 'quien soy', component: QuienSoyComponent },
-  { path: 'contacto', component: ContactoComponent },
-  { path: 'horoscopos', component: HoroscopoComponent },
-  { path: 'registrarse', component: RegistrarseComponent },
-  { path: 'login', component: LoginComponent },
+const ROUTES: Routes = [
+  { path: '', loadChildren: '../app/pages/pages.module#PagesModule'},
+  { path: '', loadChildren: '../app/admin/admin.module#AdminModule' },
+  { path: '', loadChildren: '../app/user/user.module#UserModule' },
+  { path: '**', component: Error404Component },
 ];
 
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule.forRoot( routes, { useHash: true }),
+    RouterModule.forRoot( ROUTES, { useHash: true }),
   ],
 })
 export class AppRoutingModule { }

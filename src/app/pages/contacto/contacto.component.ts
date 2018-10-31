@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { espacioVacio } from '../validador/helper';
-import { ContactoService } from '../services/contacto.service';
-import { Contacto } from '../models/contacto';
+import { espacioVacio } from '../../validador/helper';
+import { ContactoService } from '../../services/contacto.service';
+import { Contacto } from '../../models/contacto';
 import swal from 'sweetalert';
 
 

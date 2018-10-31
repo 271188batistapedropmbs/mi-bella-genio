@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { passValidator, espacioVacio } from '../validador/helper';
-import { RegistrarUsuarioService } from '../services/registrar-usuario.service';
-import { Usuario } from '../models/usuario';
+import { passValidator, espacioVacio } from '../../validador/helper';
+import { RegistrarUsuarioService } from '../../services/registrar-usuario.service';
+import { Usuario } from '../../models/usuario';
 import { Router } from '@angular/router';
 
 @Component({
