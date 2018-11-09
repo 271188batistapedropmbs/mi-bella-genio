@@ -13,15 +13,12 @@ export class ServiciosComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
   dataSource: any;
-  servicios: Servicio[] = [];
-  displayColumns: string[] = ['#', 'nombre', 'estado', 'creado', 'actualizado', 'acciones'];
+  displayedColumns: string[] = ['#', 'nombre', 'estado', 'creado', 'actualizado', 'accion'];
 
   constructor(private serv: ServiciosService) { }
 
   ngOnInit() {
    this.subscription = this.serv.getServicios().subscribe((resp: any) => {
-      console.log(resp);
-      this.servicios = resp.servicios;
       this.dataSource = new MatTableDataSource(resp.servicios);
     });
   }

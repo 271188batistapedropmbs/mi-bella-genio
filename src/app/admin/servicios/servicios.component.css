@@ -1,4 +1,15 @@
-mat-card.mat-card {
+table{
+    width:98%;
+    margin: auto;
+}
+
+.mat-form-field {
+    font-size : 14px ;
+    width : 95% ;
+    margin: auto;
+ }
+
+ mat-card.mat-card {
     padding: 3px;
     margin: auto;
     width: 98%;
