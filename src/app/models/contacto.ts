@@ -4,4 +4,5 @@ export class Contacto {
     asunto: string;
     mensaje: string;
     id?: number;
+    created_at?: string;
 }

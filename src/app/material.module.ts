@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatDividerModule} from '@angular/material/divider';
-import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule,
+   MatSelectModule, MatSortModule, MatPaginatorModule } from '@angular/material';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatInputModule} from '@angular/material/input';
@@ -13,6 +14,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
 import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 @NgModule({
@@ -35,6 +38,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSortModule,
+    MatPaginatorModule
   ],
 
   exports: [
@@ -56,6 +63,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatExpansionModule,
     MatSnackBarModule,
     MatSlideToggleModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSortModule,
+    MatPaginatorModule,
   ],
 
   declarations: []

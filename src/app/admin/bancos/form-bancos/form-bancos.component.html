@@ -1,0 +1,43 @@
+<h2 mat-dialog-title>
+    Registrar Banco
+</h2>
+
+<mat-dialog-content>
+  <form novalidate [formGroup]="formBanco" class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nombre del Banco" name='nombre' formControlName="nombre">
+    </mat-form-field>
+    
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Numero de cuenta" name='numero_cuenta' formControlName="numero_cuenta">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-select name='tipo_cuenta' formControlName="tipo_cuenta">
+            <mat-option value=''>Seleccione el tipo de Cuenta</mat-option>
+            <mat-option value='corriente'>Corriente</mat-option>
+            <mat-option value='ahorro'>Ahorro</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre del titular de la cuenta" name='usuario_cuenta' formControlName="usuario_cuenta">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Cedula del titular de la cuenta" name='usuario_cedula' formControlName="usuario_cedula">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <mat-select name='estado' formControlName="estado">
+          <mat-option value=''>Seleccione un Estado</mat-option>
+          <mat-option value='1'>Activar</mat-option>
+          <mat-option value='0'>No Activar</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+
+
+
