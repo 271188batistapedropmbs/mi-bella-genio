@@ -17,7 +17,9 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   subscription: Subscription;
   dataSource: any;
+  servicio: Servicio;
   displayedColumns: string[] = ['#', 'nombre', 'estado', 'creado', 'actualizado', 'accion'];
+  editarDato = false;
 
   constructor(private serv: ServiciosService, public modal: MatDialog) { }
 
@@ -39,20 +41,80 @@ export class ServiciosComponent implements OnInit, OnDestroy {
     const config = new MatDialogConfig();
     config.height = 'auto';
     config.width = '60%';
-    this.modal.open(FormServiciosComponent, config);
+
+    if (this.servicio) {
+      config.data = this.servicio;
+      delete this.servicio;
+    }
+
+    const dialogRef = this.modal.open(FormServiciosComponent, config);
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+        this.registrar(result);
+      }
+
+    });
   }
 
-  eliminar(id) {
-    console.log(id);
+  registrar(servicio: Servicio) {
+    /*
+    comprobamos si lo datos se va a editar y llamamos al
+    service para editar los datos del servidor
+    */
+    if (this.editarDato) {
+        console.log('editado');
+        this.serv.editarServicio(servicio).subscribe( resp => {
+          console.log(resp);
+          this.ngOnInit();
+        });
+
+    } else {
+      this.serv.registrarServicio(servicio).subscribe(resp => {
+        console.log(resp);
+        this.ngOnInit();
+      });
+    }
+    this.editarDato = false;
   }
 
-  editar(id) {
-    console.log(id);
+  editar(servicio: Servicio) {
+    this.servicio = servicio;
+    console.log(servicio);
+    this.editarDato = true;
+    this.openDialogoForm();
   }
 
-  cambiarEstado(element) {
-    console.log(element);
+  cambiarEstado(servicio: Servicio) {
+
+    let estado: number;
+
+    if (servicio.estado) {
+      estado = 0;
+    } else {
+      estado = 1;
+    }
+    const newServicio: Servicio = new Servicio();
+    newServicio.id = servicio.id;
+    newServicio.nombre = servicio.nombre;
+    newServicio.estado = estado;
+
+    this.serv.editarServicio(newServicio).subscribe(resp => {
+      console.log(resp);
+      servicio.estado = estado;
+    });
+    return false;
   }
+
+
+  eliminar(id: number) {
+    this.serv.eliminarServicio(id).subscribe(resp => {
+      console.log(resp);
+      this.ngOnInit();
+    });
+  }
+
+
 
   ngOnDestroy() {
     this.subscription.unsubscribe();

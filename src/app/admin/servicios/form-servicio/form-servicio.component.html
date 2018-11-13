@@ -4,23 +4,27 @@
 <mat-dialog-content>
 
   <form novalidate [formGroup]="formServicio" (ngSubmit)='onSubmit()' class="example-form">
+    <mat-form-field class="id">
+      <input matInput name='id' formControlName="id">
+    </mat-form-field>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Digite Nombre Del Servicio" name='nombre' formControlName="nombre">
       <mat-error *ngIf='formServicio.controls.nombre.hasError("required")'>Este campo es obligatorio</mat-error>
-      <mat-error *ngIf='formServicio.controls.nombre.hasError("minlength")'>Debe de tener por lo menos 3 letras</mat-error>
+      <mat-error *ngIf='formServicio.controls.nombre.hasError("minlength")'>Debe de tener por lo menos 5 letras</mat-error>
+      <mat-error *ngIf='formServicio.controls.nombre.hasError("maxlength")'>Debe de tener maximo 30 letras</mat-error>
       <mat-error *ngIf="formServicio.controls.nombre.hasError('pattern')">Solo se Pemiten letras</mat-error>
     </mat-form-field>
     
     <mat-form-field class="example-full-width">
       <mat-select name="estado" formControlName="estado">
-        <mat-option value="">Seleccion Estado</mat-option>
-        <mat-option value="1">Activo</mat-option>
-        <mat-option value="0">No Activo</mat-option>
+        <mat-option value="">Selecione opcion</mat-option>
+        <mat-option *ngFor='let opcion of opciones' [value]="opcion" >{{opcion == 1 ? 'Activo' : 'No Activo'}}</mat-option>
       </mat-select>
+      <mat-error *ngIf='formServicio.controls.estado.hasError("required")'>Es campo es obligatorio</mat-error>
+      <mat-error *ngIf='formServicio.controls.estado.hasError("pattern")'>Formato no valido</mat-error>
     </mat-form-field>
-      
 
-    <button mat-raised-button color='primary'>Registrar</button>
+    <button mat-raised-button color='primary' *ngIf='formServicio.valid'>Registrar <mat-icon>send</mat-icon></button>
   </form>
 </mat-dialog-content>
 

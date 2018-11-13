@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 
 @Component({
@@ -12,10 +12,15 @@ export class ModalAdminComponent implements OnInit {
   modalTitle: string;
   modalMesage: string;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
+  constructor(
+    public dialogRef: MatDialogRef<ModalAdminComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+    ) {
     this.modalTitle = data.title;
     this.modalMesage = data.mesage;
+   // this.dialogRef.close(data);
  }
+
 
   ngOnInit() {
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import 'rxjs/observable/throw';
+import { throwError } from 'rxjs';
 import swal from 'sweetalert';
 
 
@@ -26,7 +26,7 @@ export class LoginService {
       if (error.status === 401) {
         swal('Error Al Entrar Al Sistema', 'Correo o Clave invalido', 'error');
       }
-      return Observable.throw(error);
+      return throwError(error);
     });
 
   }

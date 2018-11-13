@@ -43,7 +43,7 @@ export class ContactoAdminComponent implements OnInit, OnDestroy {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.width = '600px';
-    dialogConfig.height = '400px';
+    dialogConfig.height = 'auto';
 
     dialogConfig.data = {
         title: 'Mensaje de Contactos',
@@ -53,8 +53,7 @@ export class ContactoAdminComponent implements OnInit, OnDestroy {
  const dialogRef = this.modal.open(ModalAdminComponent, dialogConfig);
 
  dialogRef.afterClosed().subscribe(result => {
-    console.log('Dialog was closed');
-    console.log(result);
+  console.log(`Dialog result: ${result}`);
  });
   }
 

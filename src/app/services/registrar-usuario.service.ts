@@ -25,4 +25,12 @@ export class RegistrarUsuarioService {
         });
 
   }
+
+  getUserByEmail(correo: string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/comprob`, correo, httpOptions)
+    .catch(error => {
+      swal('error al registrarse', JSON.stringify(error) , 'error');
+      return Observable.throw(error);
+    });
+  }
 }

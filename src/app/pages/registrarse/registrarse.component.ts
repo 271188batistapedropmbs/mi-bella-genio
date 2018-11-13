@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { passValidator, espacioVacio } from '../../validador/helper';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { passValidator, espacioVacio} from '../../validador/helper';
 import { RegistrarUsuarioService } from '../../services/registrar-usuario.service';
 import { Usuario } from '../../models/usuario';
 import { Router } from '@angular/router';
@@ -18,7 +18,8 @@ export class RegistrarseComponent implements OnInit {
   // fin del date picker del campo fecha
   formRegistrar: FormGroup;
   usuario: Usuario = new Usuario();
-  constructor(public _fb: FormBuilder, private serviceUsuario: RegistrarUsuarioService, private route: Router) { }
+  constructor(public _fb: FormBuilder, private serviceUsuario: RegistrarUsuarioService, private route: Router) {
+  }
 
   ngOnInit() {
     this.initForm();
@@ -39,12 +40,17 @@ export class RegistrarseComponent implements OnInit {
             Validators.required,
             Validators.minLength(3),
             Validators.maxLength(25),
-            Validators.pattern('[a-zA-Z ]*'),
+            Validators.pattern('[a-zA-Z]*'),
             espacioVacio
           ]
         ],
         fecha : ['', [Validators.required]],
-        correo : ['', [Validators.required, Validators.email]],
+        correo : ['',
+          [
+            Validators.required,
+            Validators.email,
+          ]
+        ],
         telefono : ['',
           [
             Validators.required,
@@ -63,7 +69,6 @@ export class RegistrarseComponent implements OnInit {
 
       let fecha = this.formRegistrar.get('fecha').value;
       fecha = fecha.getFullYear() + '/' + (fecha.getMonth() + 1 ) + '/' + fecha.getDate();
-      console.log(fecha);
 
       this.usuario = {
         nombre: this.formRegistrar.get('nombre').value,

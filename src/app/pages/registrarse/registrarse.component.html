@@ -30,6 +30,7 @@
         <input matInput placeholder="Digite su Correo" formControlName='correo' required>
         <mat-error *ngIf='formRegistrar.controls.correo.hasError("required")'>Este campo es obligatorio</mat-error>
         <mat-error *ngIf='formRegistrar.controls.correo.hasError("email")'>Correo no valido</mat-error>
+        <mat-error *ngIf='formRegistrar.controls.correo.hasError("existeCorreo")'>Este Correo ya Existe</mat-error>
       </mat-form-field>
       <mat-form-field>
         <input matInput placeholder="Digite su telefono" formControlName="telefono" required>
