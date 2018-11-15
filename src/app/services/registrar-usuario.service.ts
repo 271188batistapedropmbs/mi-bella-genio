@@ -27,7 +27,7 @@ export class RegistrarUsuarioService {
   }
 
   getUserByEmail(correo: string): Observable<any> {
-    return this.http.post<any>(`${this.API_URL}/comprobar`, {correo: correo}, httpOptions)
+    return this.http.post<any>(`${this.API_URL}/comprobar`, {correo}, httpOptions)
     .catch(error => {
       swal('error al registrarse', JSON.stringify(error) , 'error');
       return Observable.throw(error);
