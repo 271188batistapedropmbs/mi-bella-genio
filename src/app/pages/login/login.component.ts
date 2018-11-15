@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   formLogin: FormGroup;
   email: string;
   password: string;
+  loading = false;
 
   constructor(private _fb: FormBuilder, private _serviceLogin: LoginService, private router: Router ) { }
 
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
     if (!this.formLogin.valid) {
       return;
     }
+    this.loading = true;
     this.email = this.formLogin.get('email').value;
     this.password = this.formLogin.get('clave').value;
 
@@ -49,8 +51,11 @@ export class LoginComponent implements OnInit {
       } else {
         this.router.navigate(['/login']);
       }
-    });
-
+    },
+      error => {
+        console.log(error.error);
+      });
+      this.loading = false;
   }
 
 }

@@ -16,7 +16,7 @@
             <input matInput type="password" placeholder="Clave" formControlName="clave" required>
             <mat-error *ngIf="formLogin.controls.clave.hasError('required')">Este campo es obligatorio</mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" *ngIf='formLogin.valid'> Entrar <mat-icon>send</mat-icon></button>
+          <button mat-raised-button color="primary" *ngIf='formLogin.valid' [disabled]='loading'> Entrar <mat-icon>send</mat-icon></button>
       </form>
     </mat-card-content>
   </mat-card>
