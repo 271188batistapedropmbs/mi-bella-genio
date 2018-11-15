@@ -36,7 +36,7 @@
                         <mat-error *ngIf="formContacto.controls.mensaje.hasError('minlength')">Debes de contener al menos 10 letras</mat-error>
                         <mat-error *ngIf='formContacto.controls.mensaje.hasError("isVacio")'>Error campo no puede ser vacio</mat-error>
                     </mat-form-field>
-                    <button mat-raised-button color="primary" *ngIf='formContacto.valid'>Enviar  <mat-icon>send</mat-icon></button>
+                    <button mat-raised-button color="primary" *ngIf='formContacto.valid' [disabled]='loading'>Enviar  <mat-icon>send</mat-icon></button>
                 </form>
             </mat-card-content>
         </mat-card>

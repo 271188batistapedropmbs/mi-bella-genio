@@ -7,7 +7,6 @@ import { Contacto } from '../../models/contacto';
 import swal from 'sweetalert';
 
 
-
 @Component({
   selector: 'app-contacto',
   templateUrl: './contacto.component.html',
@@ -15,11 +14,11 @@ import swal from 'sweetalert';
 })
 
 
-
 export class ContactoComponent implements OnInit {
 
   formContacto: FormGroup;
   contacto: Contacto;
+  loading = false;
 
 
   constructor(private _fb: FormBuilder, private  _contactoServ: ContactoService, public router: Router) { }
@@ -30,7 +29,7 @@ export class ContactoComponent implements OnInit {
 
   initForm() {
     this.formContacto = this._fb.group({
-      nombre:  ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*'), espacioVacio]],
+      nombre:  ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z\u00f1\u00d1 ]*'), espacioVacio]],
       correo:  ['', [Validators.required, Validators.email]],
       asunto:  ['', [Validators.required, Validators.minLength(5), espacioVacio ]],
       mensaje: ['', [Validators.required, Validators.minLength(10), espacioVacio]],
@@ -39,8 +38,10 @@ export class ContactoComponent implements OnInit {
 
 
   onSubmit() {
+    this.loading = true;
     this.contacto = this.formContacto.value;
     this._contactoServ.crearContacto(this.contacto).subscribe((data) => {
+      this.loading = false;
       swal('gracias por contactarnos', data.mensaje, 'success');
       this.router.navigate(['/inicio']);
     }, (error) => {
