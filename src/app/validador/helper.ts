@@ -1,7 +1,7 @@
 import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { RegistrarUsuarioService } from '../services/registrar-usuario.service';
-import { map } from 'rxjs/operators';
+import { map, catchError} from 'rxjs/operators';
 
 
 export function passValidator (control: AbstractControl) {
@@ -34,15 +34,16 @@ export function espacioVacio(control: AbstractControl) {
   }
   return null;
 }
-
+// validaciones asincronas
 export function correoUnico(servicio: RegistrarUsuarioService): AsyncValidatorFn {
 
   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     return servicio.getUserByEmail(control.value)
     .pipe(
       map(resp => {
-        return (resp && resp.length > 0) ? {existeCorreo: true} : null;
-      })
+          return (resp && resp.length > 0) ? {existeCorreo: true} : null;
+        }),
+        catchError(error => null)
     );
   };
 }
