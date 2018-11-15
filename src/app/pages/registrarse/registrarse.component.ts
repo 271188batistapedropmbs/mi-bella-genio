@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators} from '@angular/forms';
-import { passValidator, espacioVacio} from '../../validador/helper';
+import { passValidator, espacioVacio, correoUnico} from '../../validador/helper';
 import { RegistrarUsuarioService } from '../../services/registrar-usuario.service';
 import { Usuario } from '../../models/usuario';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-registrarse',
@@ -18,8 +19,11 @@ export class RegistrarseComponent implements OnInit {
   // fin del date picker del campo fecha
   formRegistrar: FormGroup;
   usuario: Usuario = new Usuario();
-  constructor(public _fb: FormBuilder, private serviceUsuario: RegistrarUsuarioService, private route: Router) {
-  }
+  constructor(
+    public _fb: FormBuilder,
+    private serviceUsuario: RegistrarUsuarioService,
+    private route: Router,
+    public snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.initForm();
@@ -46,10 +50,11 @@ export class RegistrarseComponent implements OnInit {
         ],
         fecha : ['', [Validators.required]],
         correo : ['',
-          [
-            Validators.required,
-            Validators.email,
-          ]
+            {
+              validators: [Validators.required, Validators.email],
+              asyncValidators: [correoUnico(this.serviceUsuario).bind(this)],
+              updateOn: 'blur'
+            }
         ],
         telefono : ['',
           [
@@ -82,14 +87,13 @@ export class RegistrarseComponent implements OnInit {
       this.serviceUsuario.registrar(this.usuario).subscribe(
         (data) => {
            console.log(data);
+           this.snackbar.open('Exito ', 'Usuario Registrado Con Exito', {
+             duration: 10000,
+             horizontalPosition: 'center',
+             verticalPosition: 'bottom'
+           });
              this.route.navigate(['/login']);
-          },
-        (error) => {
-          console.log(error);
-          if (error.fecha_nacimiento) {
-            alert(error.fecha_nacimiento[0]);
-          }
-        });
+          });
      }
 
   }
