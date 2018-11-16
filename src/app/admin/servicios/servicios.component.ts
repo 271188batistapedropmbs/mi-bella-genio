@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { ServiciosService } from 'src/app/services/servicios.service';
-import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig } from '@angular/material';
-import {Subscription} from 'rxjs';
 import { Servicio } from 'src/app/models/servicio';
+import { ServiciosService } from 'src/app/services/servicios.service';
+import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatDialogConfig, MatSnackBar } from '@angular/material';
 import { FormServiciosComponent } from './form-servicio/form-servicio.component';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class ServiciosComponent implements OnInit, OnDestroy {
   displayedColumns: string[] = ['#', 'nombre', 'estado', 'creado', 'actualizado', 'accion'];
   editarDato = false;
 
-  constructor(private serv: ServiciosService, public modal: MatDialog) { }
+  constructor(private serv: ServiciosService, public modal: MatDialog , public snackbar: MatSnackBar ) { }
 
   ngOnInit() {
    this.subscription = this.serv.getServicios().subscribe((resp: any) => {
@@ -63,15 +63,20 @@ export class ServiciosComponent implements OnInit, OnDestroy {
     service para editar los datos del servidor
     */
     if (this.editarDato) {
-        console.log('editado');
+
         this.serv.editarServicio(servicio).subscribe( resp => {
-          console.log(resp);
+
+          this.snackbar.open(resp.respuesta, 'Ok', {
+            duration: 5000
+          });
           this.ngOnInit();
         });
 
     } else {
       this.serv.registrarServicio(servicio).subscribe(resp => {
-        console.log(resp);
+        this.snackbar.open(resp.respuesta, 'Ok', {
+          duration: 5000
+        });
         this.ngOnInit();
       });
     }
@@ -80,7 +85,6 @@ export class ServiciosComponent implements OnInit, OnDestroy {
 
   editar(servicio: Servicio) {
     this.servicio = servicio;
-    console.log(servicio);
     this.editarDato = true;
     this.openDialogoForm();
   }
@@ -100,7 +104,10 @@ export class ServiciosComponent implements OnInit, OnDestroy {
     newServicio.estado = estado;
 
     this.serv.editarServicio(newServicio).subscribe(resp => {
-      console.log(resp);
+
+      this.snackbar.open(resp.respuesta, 'Ok', {
+        duration: 5000
+      });
       servicio.estado = estado;
     });
     return false;
@@ -108,13 +115,18 @@ export class ServiciosComponent implements OnInit, OnDestroy {
 
 
   eliminar(id: number) {
+
+    const opcion = confirm('Deseas eliminar este servicio');
+    if (!opcion) {
+      return false;
+    }
     this.serv.eliminarServicio(id).subscribe(resp => {
-      console.log(resp);
+      this.snackbar.open(resp.respuesta, 'Ok', {
+        duration: 5000
+      });
       this.ngOnInit();
     });
   }
-
-
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
