@@ -13,8 +13,9 @@
       <mat-error *ngIf='formServicio.controls.nombre.hasError("minlength")'>Debe de tener por lo menos 5 letras</mat-error>
       <mat-error *ngIf='formServicio.controls.nombre.hasError("maxlength")'>Debe de tener maximo 30 letras</mat-error>
       <mat-error *ngIf="formServicio.controls.nombre.hasError('pattern')">Solo se Pemiten letras</mat-error>
+      <mat-error *ngIf="formServicio.controls.nombre.hasError('existeServicio')">Este servicio ya existe</mat-error>
     </mat-form-field>
-    
+
     <mat-form-field class="example-full-width">
       <mat-select name="estado" formControlName="estado">
         <mat-option value="">Selecione opcion</mat-option>
