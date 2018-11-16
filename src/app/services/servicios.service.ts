@@ -39,6 +39,13 @@ export class ServiciosService {
     });
   }
 
+  verificarServicioUnico(nombre: string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/comprobar-sevicio?token=${this.token}`, {nombre}, httpOptions)
+    .catch(error => {
+      return throwError(error);
+    });
+  }
+
   eliminarServicio(id: number): Observable<any> {
     return this.http.delete<any>(`${this.API_URL}/service/${id}?token=${this.token}`, httpOptions)
     .catch(error => {
