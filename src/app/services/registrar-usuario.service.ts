@@ -19,8 +19,8 @@ export class RegistrarUsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  registrar(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.API_URL}/registrarse`, usuario, httpOptions)
+  registrar(usuario: Usuario): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/registrarse`, usuario, httpOptions)
         .catch(error => {
 
           if (error.status === 0) {
