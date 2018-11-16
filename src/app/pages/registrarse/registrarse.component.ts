@@ -32,7 +32,7 @@ export class RegistrarseComponent implements OnInit {
 
   initForm() {
     this.formRegistrar = this._fb.group({
-        nombre : ['pedroñ', [
+        nombre : ['', [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(25),
@@ -40,7 +40,7 @@ export class RegistrarseComponent implements OnInit {
           espacioVacio
           ]
         ],
-        apellido : ['nuñez',
+        apellido : ['',
           [
             Validators.required,
             Validators.minLength(3),
@@ -49,24 +49,24 @@ export class RegistrarseComponent implements OnInit {
             espacioVacio
           ]
         ],
-        fecha : ['11/27/1988', [Validators.required]],
-        correo : ['batista@fondoboliva.com',
+        fecha : ['', [Validators.required]],
+        correo : ['',
             {
               validators: [Validators.required, Validators.email],
               asyncValidators: [correoUnico(this.serviceUsuario).bind(this)],
               updateOn: 'blur'
             }
         ],
-        telefono : ['04120917497',
+        telefono : ['',
           [
             Validators.required,
-            Validators.minLength(10),
-            Validators.maxLength(10),
+            Validators.minLength(11),
+            Validators.maxLength(11),
             Validators.pattern('[0-9]*')
           ]
         ],
-        clave : ['12345678', [Validators.required, Validators.minLength(8), espacioVacio]],
-        confirmarClave : ['12345678', [Validators.required, passValidator]],
+        clave : ['', [Validators.required, Validators.minLength(8), espacioVacio]],
+        confirmarClave : ['', [Validators.required, passValidator]],
     });
   }
 
@@ -88,9 +88,8 @@ export class RegistrarseComponent implements OnInit {
 
       this.serviceUsuario.registrar(this.usuario).subscribe(
         (data) => {
-           console.log(data);
            // agregando snackbar
-           this.snackbar.open('Usuario Registrado Con Exito', 'Ok', {
+           this.snackbar.open(data.respuesta, 'Ok', {
              duration: 5000,
              // horizontalPosition: 'center',
              // verticalPosition: 'bottom'
