@@ -2,6 +2,7 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { Observable } from 'rxjs/Observable';
 import { RegistrarUsuarioService } from '../services/registrar-usuario.service';
 import { map, catchError} from 'rxjs/operators';
+import { ServiciosService } from '../services/servicios.service';
 
 
 export function passValidator (control: AbstractControl) {
@@ -44,6 +45,18 @@ export function correoUnico(servicio: RegistrarUsuarioService): AsyncValidatorFn
           return (resp && resp.length > 0) ? {existeCorreo: true} : null;
         }),
         catchError(error => null)
+    );
+  };
+}
+
+export function servicioUnico(servicio: ServiciosService ): AsyncValidatorFn {
+  return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    return servicio.verificarServicioUnico(control.value)
+    .pipe(
+      map(resp => {
+          return (resp && resp.length > 0 ) ? {existeServicio: true} : null;
+      }),
+      catchError(error => null)
     );
   };
 }
