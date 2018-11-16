@@ -19,6 +19,7 @@ export class RegistrarseComponent implements OnInit {
   // fin del date picker del campo fecha
   formRegistrar: FormGroup;
   usuario: Usuario = new Usuario();
+  loading = false;
   constructor(
     public _fb: FormBuilder,
     private serviceUsuario: RegistrarUsuarioService,
@@ -31,46 +32,47 @@ export class RegistrarseComponent implements OnInit {
 
   initForm() {
     this.formRegistrar = this._fb.group({
-        nombre : ['', [
+        nombre : ['pedroñ', [
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(25),
-          Validators.pattern('[a-zA-Z ]*'),
+          Validators.pattern('[a-zA-Z\u00f1\u00d1 ]*'),
           espacioVacio
           ]
         ],
-        apellido : ['',
+        apellido : ['nuñez',
           [
             Validators.required,
             Validators.minLength(3),
             Validators.maxLength(25),
-            Validators.pattern('[a-zA-Z]*'),
+            Validators.pattern('[a-zA-Z\u00f1\u00d1 ]*'),
             espacioVacio
           ]
         ],
-        fecha : ['', [Validators.required]],
-        correo : ['',
+        fecha : ['11/27/1988', [Validators.required]],
+        correo : ['batista@fondoboliva.com',
             {
               validators: [Validators.required, Validators.email],
               asyncValidators: [correoUnico(this.serviceUsuario).bind(this)],
               updateOn: 'blur'
             }
         ],
-        telefono : ['',
+        telefono : ['04120917497',
           [
             Validators.required,
-            Validators.minLength(11),
-            Validators.maxLength(11),
+            Validators.minLength(10),
+            Validators.maxLength(10),
             Validators.pattern('[0-9]*')
           ]
         ],
-        clave : ['', [Validators.required, Validators.minLength(8), espacioVacio]],
-        confirmarClave : ['', [Validators.required, passValidator]],
+        clave : ['12345678', [Validators.required, Validators.minLength(8), espacioVacio]],
+        confirmarClave : ['12345678', [Validators.required, passValidator]],
     });
   }
 
   onSubmit() {
     if (this.formRegistrar.valid) {
+      this.loading = true;
 
       let fecha = this.formRegistrar.get('fecha').value;
       fecha = fecha.getFullYear() + '/' + (fecha.getMonth() + 1 ) + '/' + fecha.getDate();
@@ -87,13 +89,19 @@ export class RegistrarseComponent implements OnInit {
       this.serviceUsuario.registrar(this.usuario).subscribe(
         (data) => {
            console.log(data);
-           this.snackbar.open('Exito ', 'Usuario Registrado Con Exito', {
-             duration: 10000,
-             horizontalPosition: 'center',
-             verticalPosition: 'bottom'
+           // agregando snackbar
+           this.snackbar.open('Usuario Registrado Con Exito', 'Ok', {
+             duration: 5000,
+             // horizontalPosition: 'center',
+             // verticalPosition: 'bottom'
            });
              this.route.navigate(['/login']);
+          },
+        (error) => {
+            console.log(error.error);
           });
+
+          this.loading = false;
      }
 
   }
