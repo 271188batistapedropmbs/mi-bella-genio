@@ -19,25 +19,28 @@ export class ServiciosService {
   token = localStorage.getItem('ApiToken');
 
   getServicios(): Observable<Servicio[]> {
-    return this.http.get<Servicio[]>(`${this.API_URL}/service?token=${this.token}`);
-  }
-
-  registrarServicio(servicio: Servicio): Observable<Servicio> {
-    return this.http.post<Servicio>(`${this.API_URL}/service?token=${this.token}`, servicio, httpOptions)
+    return this.http.get<Servicio[]>(`${this.API_URL}/service?token=${this.token}`)
     .catch(error => {
       return throwError(error);
     });
   }
 
-  editarServicio(servicio: Servicio): Observable<Servicio> {
-    return this.http.put<Servicio>(`${this.API_URL}/service/${servicio.id}?token=${this.token}`, servicio, httpOptions)
+  registrarServicio(servicio: Servicio): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/service?token=${this.token}`, servicio, httpOptions)
     .catch(error => {
       return throwError(error);
     });
   }
 
-  eliminarServicio(id: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.API_URL}/service/${id}?token=${this.token}`, httpOptions)
+  editarServicio(servicio: Servicio): Observable<any> {
+    return this.http.put<any>(`${this.API_URL}/service/${servicio.id}?token=${this.token}`, servicio, httpOptions)
+    .catch(error => {
+      return throwError(error);
+    });
+  }
+
+  eliminarServicio(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.API_URL}/service/${id}?token=${this.token}`, httpOptions)
     .catch(error => {
       return throwError(error);
     });
