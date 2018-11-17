@@ -41,6 +41,13 @@ export class BancosService {
     });
   }
 
+  verificarCuentaUnico(cuenta: string): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/comprobar-banco?token=${this.token}`, {cuenta}, httpOptions)
+    .catch(error => {
+      return throwError(error);
+    });
+  }
+
   eliminar(id: number): Observable<any> {
     return this.http.delete<any>(`${this.API_URL}/bank/${id}?token=${this.token}`, httpOptions)
     .catch(error => {
