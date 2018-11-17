@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Banco } from '../models/banco';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import 'rxjs/add/operator/catch';
-import 'rxjs/observable/throw';
+
+
+const httpOptions = { headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +23,29 @@ export class BancosService {
     return this.http.get<Banco[]>(`${this.API_URL}/bank?token=${this.token}`)
     .catch(error => {
       swal('error al Otener Usuarios', JSON.stringify(error) , 'error');
-      return Observable.throw(error);
+      return throwError(error);
     });
   }
+
+  registrar(banco: Banco): Observable<any> {
+    return this.http.post<any>(`${this.API_URL}/bank?token=${this.token}`, banco, httpOptions)
+    .catch(error => {
+      return throwError(error);
+    });
+  }
+
+  editar(banco: Banco): Observable<any> {
+    return this.http.put<any>(`${this.API_URL}/bank/${banco.id}?token=${this.token}`, banco, httpOptions)
+    .catch(error => {
+      return throwError(error);
+    });
+  }
+
+  eliminar(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.API_URL}/bank/${id}?token=${this.token}`, httpOptions)
+    .catch(error => {
+      return throwError(error);
+    });
+  }
+
 }
