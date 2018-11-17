@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { RegistrarUsuarioService } from '../services/registrar-usuario.service';
 import { map, catchError} from 'rxjs/operators';
 import { ServiciosService } from '../services/servicios.service';
+import { BancosService } from '../services/bancos.service';
 
 
 export function passValidator (control: AbstractControl) {
@@ -55,6 +56,18 @@ export function servicioUnico(servicio: ServiciosService ): AsyncValidatorFn {
     .pipe(
       map(resp => {
           return (resp && resp.length > 0 ) ? {existeServicio: true} : null;
+      }),
+      catchError(error => null)
+    );
+  };
+}
+
+export function cuentaBancoUnico(servicio: BancosService): AsyncValidatorFn {
+  return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+    return servicio.verificarCuentaUnico(control.value)
+    .pipe(
+      map(resp => {
+          return (resp && resp.length > 0 ) ? {existeCuenta: true} : null;
       }),
       catchError(error => null)
     );
