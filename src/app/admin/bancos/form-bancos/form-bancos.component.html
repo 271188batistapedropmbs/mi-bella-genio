@@ -3,13 +3,24 @@
 </h2>
 
 <mat-dialog-content>
-  <form novalidate [formGroup]="formBanco" class="example-form">
+  <form novalidate [formGroup]="formBanco" class="example-form" (ngSubmit)='onSubmit()'>
+    <mat-form-field class="id">
+        <input matInput name='id' formControlName="id">
+    </mat-form-field>
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Nombre del Banco" name='nombre' formControlName="nombre">
+      <mat-error *ngIf='formBanco.controls.nombre.hasError("required")'>Este campo es obligatorio</mat-error>
+      <mat-error *ngIf='formBanco.controls.nombre.hasError("minlength")'>Debe de tener por lo menos 5 letras</mat-error>
+      <mat-error *ngIf='formBanco.controls.nombre.hasError("maxlength")'>Debe de tener maximo 70 letras</mat-error>
+      <mat-error *ngIf="formBanco.controls.nombre.hasError('pattern')">Solo se Pemiten letras</mat-error>
     </mat-form-field>
     
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Numero de cuenta" name='numero_cuenta' formControlName="numero_cuenta">
+        <mat-error *ngIf='formBanco.controls.numero_cuenta.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formBanco.controls.numero_cuenta.hasError("minlength")'>Debe de tener 20 digitos</mat-error>
+        <mat-error *ngIf='formBanco.controls.numero_cuenta.hasError("maxlength")'>Debe de tener 20 digitos</mat-error>
+        <mat-error *ngIf="formBanco.controls.numero_cuenta.hasError('pattern')">Solo se Pemiten numeros</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
@@ -18,24 +29,38 @@
             <mat-option value='corriente'>Corriente</mat-option>
             <mat-option value='ahorro'>Ahorro</mat-option>
         </mat-select>
+        <mat-error *ngIf='formBanco.controls.tipo_cuenta.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formBanco.controls.tipo_cuenta.hasError("minlength")'>Debe de tener 6  lettas</mat-error>
+        <mat-error *ngIf='formBanco.controls.tipo_cuenta.hasError("maxlength")'>Debe de tener 9 letras</mat-error>
+        <mat-error *ngIf="formBanco.controls.tipo_cuenta.hasError('pattern')">Solo se Pemiten letras</mat-error>
+    
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Nombre del titular de la cuenta" name='usuario_cuenta' formControlName="usuario_cuenta">
+        <mat-error *ngIf='formBanco.controls.usuario_cuenta.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formBanco.controls.usuario_cuenta.hasError("minlength")'>Debe de tener 7  lettas</mat-error>
+        <mat-error *ngIf='formBanco.controls.usuario_cuenta.hasError("maxlength")'>Debe de tener 80 letras</mat-error>
+        <mat-error *ngIf='formBanco.controls.usuario_cuenta.hasError("pattern")'>Solo se Pemiten letras</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Cedula del titular de la cuenta" name='usuario_cedula' formControlName="usuario_cedula">
+        <mat-error *ngIf='formBanco.controls.usuario_cedula.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formBanco.controls.usuario_cedula.hasError("minlength")'>Debe de tener 7  lettas</mat-error>
+        <mat-error *ngIf='formBanco.controls.usuario_cedula.hasError("maxlength")'>Debe de tener 8 letras</mat-error>
+        <mat-error *ngIf='formBanco.controls.usuario_cedula.hasError("pattern")'>Solo se pemiten numero</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
         <mat-select name='estado' formControlName="estado">
           <mat-option value=''>Seleccione un Estado</mat-option>
-          <mat-option value='1'>Activar</mat-option>
-          <mat-option value='0'>No Activar</mat-option>
+          <mat-option *ngFor='let estado of estado' [value]='estado'>{{estado == 0 ? 'No Activar': 'Activar'}}</mat-option>
         </mat-select>
+        <mat-error *ngIf='formBanco.controls.estado.hasError("required")'>Este campo es obligatorio</mat-error>
+        <mat-error *ngIf='formBanco.controls.estado.hasError("pattern")'>Solo se pemiten numero</mat-error>
     </mat-form-field>
-
+    <button mat-raised-button color='primary' *ngIf='formBanco.valid'>Registrar <mat-icon>send</mat-icon></button>
   </form>
 </mat-dialog-content>
 
