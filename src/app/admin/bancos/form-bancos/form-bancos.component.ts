@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Banco } from 'src/app/models/banco';
+import { cuentaBancoUnico } from 'src/app/validador/helper';
+import { BancosService } from 'src/app/services/bancos.service';
 
 @Component({
   selector: 'app-form-bancos',
@@ -15,6 +17,7 @@ export class FormBancosComponent implements OnInit {
   estado: Array<number> = [0, 1];
   constructor(
     private _fb: FormBuilder,
+    private _servBanco: BancosService,
     public dialogRef: MatDialogRef<FormBancosComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Banco
     ) { }
@@ -40,7 +43,19 @@ export class FormBancosComponent implements OnInit {
     this.formBanco = this._fb.group({
       id: '',
       nombre: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(70), Validators.pattern('[a-zA-Z ]*')]],
-      numero_cuenta: ['', [Validators.required, Validators.minLength(20), Validators.maxLength(20), Validators.pattern('[0-9]*')]],
+      numero_cuenta: ['',
+      {
+        Validators :
+          [
+            Validators.required,
+            Validators.minLength(20),
+            Validators.maxLength(20),
+            Validators.pattern('[0-9]*')
+          ],
+          asyncValidators : [cuentaBancoUnico(this._servBanco).bind(this)],
+          updateOn: 'blur'
+      },
+    ],
       tipo_cuenta: ['', [Validators.required, Validators.maxLength(10), Validators.minLength(6), Validators.pattern('[a-zA-Z]*')]],
       usuario_cuenta: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(80), Validators.pattern('[a-zA-Z ]*')]],
       usuario_cedula: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(8), Validators.pattern('[0-9]*')]],
@@ -114,15 +129,6 @@ export class FormBancosComponent implements OnInit {
 
   editar() {
     this.initFormEdit();
-    /*this.formBanco.setValue({
-      id : this.banco.id,
-      nombre: this.banco.nombre,
-      numero_cuenta: this.banco.numero_cuenta,
-      tipo_cuenta : this.banco.tipo_cuenta,
-      usuario_cuenta: this.banco.usuario_cuenta,
-      usuario_cedula: this.banco.usuario_cedula,
-      estado: this.banco.estado
-    });*/
   }
 
   onSubmit() {
