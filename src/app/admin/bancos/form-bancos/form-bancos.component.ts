@@ -45,7 +45,7 @@ export class FormBancosComponent implements OnInit {
       nombre: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(70), Validators.pattern('[a-zA-Z ]*')]],
       numero_cuenta: ['',
       {
-        Validators :
+        validators :
           [
             Validators.required,
             Validators.minLength(20),
