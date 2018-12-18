@@ -8,6 +8,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ContactoAdminComponent } from './contacto-admin/contacto-admin.component';
 import { BancosComponent } from './bancos/bancos.component';
 import { ServiciosComponent } from './servicios/servicios.component';
+import { TransferenciasComponent } from './transferencias/transferencias.component';
+import { ConsultasComponent } from './consultas/consultas.component';
 
 
 const routes: Routes = [
@@ -20,7 +22,9 @@ const routes: Routes = [
       { path: 'usuarios', component: UsuariosComponent },
       { path: 'contactos', component: ContactoAdminComponent },
       { path: 'bancos', component: BancosComponent},
-      { path: 'servicios', component: ServiciosComponent}
+      { path: 'servicios', component: ServiciosComponent},
+      { path: 'transferencias', component: TransferenciasComponent},
+      { path: 'consultas', component: ConsultasComponent}
     ],
   },
 ];

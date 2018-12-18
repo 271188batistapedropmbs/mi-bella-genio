@@ -17,6 +17,8 @@ import { ServiciosComponent } from './servicios/servicios.component';
 import { ModalAdminComponent } from './modal-admin/modal-admin.component';
 import { FormServiciosComponent } from './servicios/form-servicio/form-servicio.component';
 import { FormBancosComponent } from './bancos/form-bancos/form-bancos.component';
+import { TransferenciasComponent } from './transferencias/transferencias.component';
+import { ConsultasComponent } from './consultas/consultas.component';
 
 
 
@@ -38,6 +40,8 @@ import { FormBancosComponent } from './bancos/form-bancos/form-bancos.component'
     ModalAdminComponent,
     FormServiciosComponent,
     FormBancosComponent,
+    TransferenciasComponent,
+    ConsultasComponent,
   ],
   entryComponents: [
     ModalAdminComponent,

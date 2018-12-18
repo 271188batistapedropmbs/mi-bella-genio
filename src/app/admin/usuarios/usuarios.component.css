@@ -2,3 +2,23 @@ table {
     width: 98%;
     margin: auto;
   }
+
+  .example-container {
+    height: 80%;
+    overflow: auto;
+  }
+
+
+  .mat-form-field {
+    font-size : 14px ;
+    width : 95% ;
+    margin: auto;
+ }
+
+ mat-card.mat-card {
+    padding: 3px;
+    margin: auto;
+    width: 98%;
+    margin-bottom: 12px;
+    height: 40px;
+}
