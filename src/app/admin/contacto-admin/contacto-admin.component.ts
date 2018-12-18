@@ -57,6 +57,10 @@ export class ContactoAdminComponent implements OnInit, OnDestroy {
  });
   }
 
+  responderMensaje(id: number): void {
+    console.log(id);
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

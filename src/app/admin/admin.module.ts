@@ -19,6 +19,7 @@ import { FormServiciosComponent } from './servicios/form-servicio/form-servicio.
 import { FormBancosComponent } from './bancos/form-bancos/form-bancos.component';
 import { TransferenciasComponent } from './transferencias/transferencias.component';
 import { ConsultasComponent } from './consultas/consultas.component';
+import { FormContactoComponent } from './contacto-admin/form-contacto/form-contacto.component';
 
 
 
@@ -42,6 +43,7 @@ import { ConsultasComponent } from './consultas/consultas.component';
     FormBancosComponent,
     TransferenciasComponent,
     ConsultasComponent,
+    FormContactoComponent,
   ],
   entryComponents: [
     ModalAdminComponent,
